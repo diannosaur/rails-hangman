@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  guesses: 
+  lives: 1
+  word_array: 
+  word: MyString
+  game_in_progress: 
+  word_found: 
+  hidden_word: MyString
+
+two:
+  guesses: 
+  lives: 1
+  word_array: 
+  word: MyString
+  game_in_progress: 
+  word_found: 
+  hidden_word: MyString
