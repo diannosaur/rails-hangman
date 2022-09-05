@@ -10,18 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_02_022454) do
+ActiveRecord::Schema.define(version: 2022_09_05_032509) do
+
+  create_table "guesses", force: :cascade do |t|
+    t.string "guess"
+    t.integer "hangman_state_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hangman_state_id"], name: "index_guesses_on_hangman_state_id"
+  end
 
   create_table "hangman_states", force: :cascade do |t|
-    t.string "guesses"
-    t.integer "lives"
     t.string "word"
-    t.boolean "game_in_progress"
-    t.boolean "word_found"
-    t.string "hidden_word"
-    t.string "games"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "guesses", "hangman_states"
 end
