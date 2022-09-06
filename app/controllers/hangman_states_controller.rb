@@ -9,6 +9,7 @@ class HangmanStatesController < ApplicationController
   def show
     # show one game
     @game = HangmanState.find(params[:id])
+    @guesses = Guess.where(["hangman_state_id = ?", params[:id]])
   end
 
   # update

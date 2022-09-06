@@ -2,4 +2,12 @@
 <h2>Your word is <%= @game.hidden_word%></h2>
 <h2>Your word is <%= @game.word%></h2>
 
+<h2>Guesses made:</h2>
+<ul>
+  <% @guesses.each do |guess| %>
+      <li>
+        <%= guess.guess %>
+      </li>
+    <% end %>
+</ul>
 <%= render 'guesses/form' %>
