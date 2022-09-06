@@ -1,0 +1,10 @@
+<h1>Welcome to Rails Hangman</h1>
+<p>There are x games in progress</p>
+
+<h2>Games</h2>
+
+<%= form_with model: HangmanState.new do |form| %>
+  <p>
+    <%= form.submit "New game" %>
+  </p>
+<% end %>

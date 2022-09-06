@@ -5,8 +5,8 @@ class HangmanState < ApplicationRecord
 
   def random_word
     begin
-    words = IO.readlines("words.txt")
-    words.sample
+    words = IO.readlines("public/words.txt")
+    words.sample.chomp
     rescue => e
       e.message
     end
@@ -35,9 +35,10 @@ class HangmanState < ApplicationRecord
   end
 
   def hidden_word
-    hidden = random_word_array.map{ |x| !guesses.include?(x) ? '*' : x }
+    hidden = random_word_array.map{ |x| !guesses.any?{|hash| hash['guess'] == x} ? '*' : x }
     hidden.join('')
   end
+# guesses is not an array of strings, its an array of guess objects
 
 
 

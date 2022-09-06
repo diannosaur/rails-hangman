@@ -1,0 +1,8 @@
+<%= form_with url: hangman_state_guesses_url(hangman_state_id: @game.id) do |form| %>
+  <p>
+    <%= form.label :guess %><br>
+    <%= form.text_field :guess %>
+  </p>
+    <%= form.submit %>
+  </p>
+<% end %>

@@ -5,5 +5,8 @@ class Guess < ApplicationRecord
     guesses << guess
   end
 
-
+  def create
+    @guess = Guess.new(params[:guess])
+    
+  end
 end
