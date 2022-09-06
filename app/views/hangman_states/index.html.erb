@@ -2,6 +2,13 @@
 <p>There are x games in progress</p>
 
 <h2>Games</h2>
+<ul>
+  <% @games.each do |game| %>
+      <li>
+        <%= link_to "Game #{game.id}", game %>
+      </li>
+    <% end %>
+</ul>
 
 <%= form_with model: HangmanState.new do |form| %>
   <p>

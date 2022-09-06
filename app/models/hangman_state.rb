@@ -35,7 +35,7 @@ class HangmanState < ApplicationRecord
   end
 
   def hidden_word
-    hidden = random_word_array.map{ |x| !guesses.any?{|hash| hash['guess'] == x} ? '*' : x }
+    hidden = random_word_array.map{ |x| !guesses.any?{|guess| guess.guess == x} ? '*' : x }
     hidden.join('')
   end
 # guesses is not an array of strings, its an array of guess objects
