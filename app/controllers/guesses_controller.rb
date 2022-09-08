@@ -26,11 +26,14 @@ class GuessesController < ApplicationController
     @guess = Guess.new(guess: params[:guess], hangman_state_id: params[:hangman_state_id])
     @game = HangmanState.find(params[:hangman_state_id])
     if @guess.save
+      # check if word has been guessed
+
       redirect_to @game
     else
       flash.alert = @guess.errors.full_messages_for(:guess)
       redirect_to @game
     end
   end
+
 end
 

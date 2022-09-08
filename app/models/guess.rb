@@ -4,9 +4,6 @@ class Guess < ApplicationRecord
 
   validates :guess, presence: true, length: {maximum: 1 }, format: { with: /\A[a-z]+\z/, message: "only allows lowercase letters" }, uniqueness: { scope: :hangman_state_id, message: "already guessed" }
 
-  def create
-    @guess = Guess.new(params[:guess])
-  end
 
   # def guesses_per_game(game_id)
   #   Guess.where(["hangman_state_id = ?", game_id)

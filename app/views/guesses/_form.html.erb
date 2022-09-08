@@ -1,6 +1,5 @@
 <%= form_with url: hangman_state_guesses_url(hangman_state_id: @game.id) do |form| %>
   <div>
-    <%= form.label :guess %><br>
     <%= form.text_field :guess %>
   </div>
   <% flash.each do |type, msg| %>
@@ -8,5 +7,5 @@
       <%= msg[0] %>
     </div>
   <% end %>
-    <%= form.submit %>
+    <%= form.submit "Guess"%>
 <% end %>

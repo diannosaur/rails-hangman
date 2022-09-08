@@ -18,22 +18,43 @@ class HangmanState < ApplicationRecord
     word.split('')
   end
 
-  def player_alive? # question mark method treated like a boolean, shouldn't ever change any state.
-    number_of_errors < LIVES
+  def guesses_made
+    guesses.map(&:guess)
   end
 
-  def word_found?
+  # def game_won?
+  #   guesslist = []
+  #   guesses.to_a.map { |guess| guesslist.push(guess.guess)}
+  #   random_word_array.all? { |x| guesslist.include?(x)}
+  # end
+
+  def lost? # question mark method treated like a boolean, shouldn't ever change any state.
+    LIVES <= number_of_errors
+  end
+
+  def won?
     # we know the word is found if all the letters in the word exist in the guesses array
-    random_word_array.all? { |x| guesses.include?(x) }
+    random_word_array.all? { |x| guesses_made.include?(x) }
   end
 
-  def game_in_progress?
-    player_alive? && !word_found?
+  # def end_win
+  #   random_word_array.all? { |x| guesses_made.include?(x) }
+  # end
+
+  # def end_lose
+  # end
+
+  # def game_over
+  #   !player_alive? && won?
+  # end
+
+  def lives_left
+    LIVES - number_of_errors
   end
 
   def number_of_errors
     # guesses that are not in the word
-    guesses.count { |x| !random_word_array.include?(x)} #ruby array.count method
+    guesses_made.count { |x| !random_word_array.include?(x)} #ruby array.count method
   end
 
   def hidden_word
