@@ -1,6 +1,8 @@
 class HangmanState < ApplicationRecord
   has_many :guesses
 
+  accepts_nested_attributes_for :guesses
+
   LIVES = 9
 
   def random_word

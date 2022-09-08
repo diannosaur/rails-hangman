@@ -1,8 +1,8 @@
 class GuessesController < ApplicationController
 
   def index
-    # list of all games
-    @games = HangmanState.all
+    # list of all guesses
+    @guesses = Guess.all
   end
   # think about what actions user will take and turn them into controller actions
 
@@ -28,7 +28,8 @@ class GuessesController < ApplicationController
     if @guess.save
       redirect_to @game
     else
-      render :new, status: :unprocessable_entity
+      flash.alert = @guess.errors.full_messages_for(:guess)
+      redirect_to @game
     end
   end
 end
