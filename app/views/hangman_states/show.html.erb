@@ -13,15 +13,18 @@
       <% end %>
   </ul>
   <% else %>
- <p>Word: <%= @game.word %> </p>
   <% end %>
-
-<% if @game.won? %>
+  
+  <% if @game.won? %>
   <p>You won!</p>
-<% end %>
-<% if @game.lost? %>  
+  <p>Answer: <%= @game.word %> </p>
+  <% end %>
+  <% if @game.lost? %>  
   <p>You lost!</p>
+  <p>Answer: <%= @game.word %> </p>
 <% end %>
+
+<%= link_to "Delete game", hangman_state_path(@game), method: :delete %>
 
 
 

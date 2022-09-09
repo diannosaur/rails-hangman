@@ -30,9 +30,13 @@ class HangmanStatesController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
 
+  def destroy
+    @game = HangmanState.find(params[:id])
+    @game.destroy
 
-
+    redirect_to root_path, status: :see_other
   end
 
 

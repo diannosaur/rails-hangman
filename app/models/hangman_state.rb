@@ -1,5 +1,5 @@
 class HangmanState < ApplicationRecord
-  has_many :guesses
+  has_many :guesses, :dependent => :delete_all
 
   accepts_nested_attributes_for :guesses
 
@@ -58,11 +58,9 @@ class HangmanState < ApplicationRecord
   end
 
   def hidden_word
-    hidden = random_word_array.map{ |x| !guesses.any?{|guess| guess.guess == x} ? '*' : x }
+    hidden = random_word_array.map{ |x| !guesses.any?{|guess| guess.guess == x} ? '[]' : x }
     hidden.join('')
   end
 # guesses is not an array of strings, its an array of guess objects
-
-
 
 end
