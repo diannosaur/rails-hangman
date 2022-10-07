@@ -1,17 +1,16 @@
-<h1>Welcome to Rails Hangman</h1>
-<p>There are <%= HangmanState.all.count %> games in total</p>
-
-<h2>Games</h2>
-<ul>
+<h1>Hangman on Rails</h1>
+<%= form_with model: HangmanState.new do |form| %>
+    <%= form.submit "New game", :class => 'btn btn-primary' %>
+<% end %>
+<br>
+<% if HangmanState.all.count > 0 %>
+  <h2 class="h5">Games in progress</h2>
+<% end %>
+<ul style="list-style-type: none;">
   <% @games.each do |game| %>
       <li>
-        <%= link_to "Game #{game.id}", game %>
+      Game started <%= game.created_at.in_time_zone('Pacific/Auckland').strftime("%A, %m/%d/%Y at %I:%M%p") %> | <%= link_to "Resume", game %> | <%= link_to "Delete", hangman_state_path(game), method: :delete %>
       </li>
     <% end %>
 </ul>
 
-<%= form_with model: HangmanState.new do |form| %>
-  <p>
-    <%= form.submit "New game" %>
-  </p>
-<% end %>

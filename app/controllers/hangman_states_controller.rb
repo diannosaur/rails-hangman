@@ -13,8 +13,6 @@ class HangmanStatesController < ApplicationController
 
   # update
 
-  # delete
-
   # new i.e. used to build the form
   def new
     @game = HangmanState.new # start game?
@@ -24,7 +22,6 @@ class HangmanStatesController < ApplicationController
   def create
     @game = HangmanState.new
     @game.word = @game.random_word
-
     if @game.save
       redirect_to @game
     else
@@ -35,11 +32,7 @@ class HangmanStatesController < ApplicationController
   def destroy
     @game = HangmanState.find(params[:id])
     @game.destroy
-
     redirect_to root_path, status: :see_other
   end
-
-
-
 
 end

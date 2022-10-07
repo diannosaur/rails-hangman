@@ -4,12 +4,7 @@ class GuessesController < ApplicationController
     # list of all guesses
     @guesses = Guess.all
   end
-  # think about what actions user will take and turn them into controller actions
-
-  def show
-    # show one game
-    @game = HangmanState.find(params[:id])
-  end
+  # show
 
   # update
 
@@ -26,8 +21,6 @@ class GuessesController < ApplicationController
     @guess = Guess.new(guess: params[:guess], hangman_state_id: params[:hangman_state_id])
     @game = HangmanState.find(params[:hangman_state_id])
     if @guess.save
-      # check if word has been guessed
-
       redirect_to @game
     else
       flash.alert = @guess.errors.full_messages_for(:guess)
