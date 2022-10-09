@@ -19,7 +19,8 @@ class HangmanState < ApplicationRecord
   end
 
   def guesses_made
-    guesses.map(&:guess)
+    guesses.map(&:guess) # ruby method
+    # guesses.pluck(:guess) = ActiveRecord method, a bit faster. Only works when you're getting values from columns
   end
 
   def lost?
@@ -44,8 +45,8 @@ class HangmanState < ApplicationRecord
   end
 
   def hidden_word
-    hidden = random_word_array.map{ |x| !guesses.any?{|guess| guess.guess == x} ? ' * ' : x }
-    hidden.join('')
+    random_word_array.map{ |x| !guesses.any?{|guess| guess.guess == x} ? nil : x }
+    # hidden.join('')
   end
 
 end

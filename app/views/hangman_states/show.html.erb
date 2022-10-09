@@ -1,7 +1,11 @@
 <h1>Game started <%= @game.created_at.in_time_zone('Pacific/Auckland').strftime("%A, %m/%d/%Y at %I:%M%p") %></h1>
 <br>
 <% if !@game.won? && !@game.lost? %>
-  <h2><span class="badge bg-secondary"><%= @game.hidden_word %></span> </h2>
+  <h2><span class="badge bg-secondary">
+
+  <%= @game.hidden_word.map{ |x| x.present? ? x : ' * '}.join('')%></span>
+
+  </h2>
   <% if @game.lives_left > 1 %>
     <p>You have <%= @game.lives_left %> lives left</p>
   <% else %>
